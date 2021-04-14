@@ -41,9 +41,10 @@ export default function CenteredTabs() {
 
 
 const TopTab = styled(Tabs)`
+    flex-grow:1;
     color:black;
     background-color:white;
-    display:inline-block;
+    display:flex;
     width:auto;
     .MuiTab-root {
         text-transform:none;
