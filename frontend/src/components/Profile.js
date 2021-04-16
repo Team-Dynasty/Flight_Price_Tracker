@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import Signup from './Sign/Signup';
+import Login from './Sign/Login';
+import Hero from './Sign/PopupHero';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 
@@ -92,7 +94,7 @@ export default function MenuPopupState() {
           horizontal: 'center',
         }}
       >
-        <Signup/>
+        <Hero/>
       </Popup>
     </>
   );

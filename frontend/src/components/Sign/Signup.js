@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Form,Button,Card} from 'react-bootstrap'
 
 function Signup() {
+    const nameRef = useRef();
+    const phoneRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
@@ -12,6 +14,14 @@ function Signup() {
                 <Card.Body>
                     <h2 className ="text-center ">Sign Up</h2>
                 <Form>
+                    <Form.Group id="name">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="name" ref={nameRef} required />
+                    </Form.Group>
+                    <Form.Group id="phonenumber">
+                        <Form.Label>Phone no</Form.Label>
+                        <Form.Control type="phonenumber" ref={phoneRef} required />
+                    </Form.Group>
                     <Form.Group id="email">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" ref={emailRef} required />
@@ -24,7 +34,7 @@ function Signup() {
                         <Form.Label>Password Confirmation</Form.Label>
                         <Form.Control type="password" ref={passwordConfirmRef} required />
                     </Form.Group>
-                    <Button className="w-100" type="submit">Submit</Button>
+                    <Button className="w-100" type="submit">Signup</Button>
                 </Form>
                 </Card.Body>
             </Card>
