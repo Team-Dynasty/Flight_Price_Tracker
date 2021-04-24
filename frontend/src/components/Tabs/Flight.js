@@ -41,7 +41,12 @@ function Flight() {
             return response.json();
         })
         .then((data)=>{
-            console.log(data) // console log the flight data
+            const alldata= data
+            var i;
+            for (i = 0; i < 10; i++) {
+                console.log(alldata.data[i])
+              }
+             // console log the flight data
         })
     }
 
