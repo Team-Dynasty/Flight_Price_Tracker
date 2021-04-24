@@ -11,6 +11,8 @@ function Flight() {
     const [toTime, setToTime] = useState('27/05/2021')
     const [trip,setTrip]= useState("round");
     const [guest,setGuest] = useState(1);
+
+
     console.log(origin);
 
     const TEQUILA_API_KEY = "NZ1N-dUb46M2DP0wrST6VQXyOJ6ndMpm";
@@ -34,7 +36,7 @@ function Flight() {
         await getOriginCityCode(origin);
         await getDestinationCityCode(destination);
 
-        await fetch(`https://tequila-api.kiwi.com/v2/search?apikey=${TEQUILA_API_KEY}&fly_from=${originCityCode}&fly_to=${destinationCityCode}&date_from=${fromTime}&date_to=${toTime}&nights_in_dst_from=7&nights_in_dst_to=28&flight_type=${trip}&one_for_city=1&max_stopovers=0&curr=INR`)
+        await fetch(`https://tequila-api.kiwi.com/v2/search?apikey=${TEQUILA_API_KEY}&fly_from=${originCityCode}&fly_to=${destinationCityCode}&date_from=${fromTime}&date_to=${toTime}&nights_in_dst_from=7&nights_in_dst_to=28&flight_type=${trip}&max_stopovers=0&curr=INR`)
         .then(response => {
             return response.json();
         })
