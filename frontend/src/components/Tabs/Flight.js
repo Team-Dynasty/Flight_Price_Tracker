@@ -1,16 +1,19 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
+import airline from './airline'
 
 function Flight() {
+    
     var d = new Date(); //date object
     const [origin, setOrigin] = useState("New-delhi"); 
     const [originCityCode, setOriginCityCode] = useState();
     const [destinationCityCode, setDestinationCityCode] = useState();
     const [destination, setDestination] = useState("Mumbai"); //
-    const [fromTime, setFromTime] = useState(`${d.getDate()+1}/${(d.getMonth()+1)> 9 ? (d.getMonth()) : ("0"+(d.getMonth()+1))}/${d.getFullYear()}`)
-    const [toTime, setToTime] = useState('27/05/2021')
-    const [trip,setTrip]= useState("round");
-    const [guest,setGuest] = useState(1);
+    const [fromTime, setFromTime] = useState(`${d.getDate()+1}/${(d.getMonth()+1)> 9?(d.getMonth()):("0"+(d.getMonth()+1))}/${d.getFullYear()}`)
+    const [toTime, setToTime] = useState('27/05/2021');
+    const [trip, setTrip]= useState("oneway");
+    const [flightData, setFlightData] = useState({airline});
+    const [guest, setGuest] = useState(1);
 
 
     console.log(origin);
@@ -24,6 +27,7 @@ function Flight() {
             setOriginCityCode(data["locations"][0]["code"])
         })
     }
+
     const getDestinationCityCode= async(city)=>{
         await fetch(`https://tequila-api.kiwi.com/locations/query?apikey=${TEQUILA_API_KEY}&term=${city}&location_types=city`)
         .then(response=>{return response?.json()})
@@ -31,27 +35,38 @@ function Flight() {
             setDestinationCityCode(data["locations"][0]["code"])
         })
     }
+
     const getData = async (event)=>{
         
         await getOriginCityCode(origin);
         await getDestinationCityCode(destination);
 
-        await fetch(`https://tequila-api.kiwi.com/v2/search?apikey=${TEQUILA_API_KEY}&fly_from=${originCityCode}&fly_to=${destinationCityCode}&date_from=${fromTime}&date_to=${toTime}&nights_in_dst_from=7&nights_in_dst_to=28&flight_type=${trip}&max_stopovers=0&curr=INR`)
+        await fetch(`https://tequila-api.kiwi.com/v2/search?apikey=${TEQUILA_API_KEY}&fly_from=${originCityCode}&fly_to=${destinationCityCode}&date_from=${fromTime}&date_to=${toTime}&flight_type=${trip}&sort=price&max_stopovers=0&curr=INR`)
         .then(response => {
             return response.json();
         })
         .then((data)=>{
-            console.log(data) // console log the flight data
+            setFlightData((prevState)=>({
+                airline:{
+                    ...prevState.airline,
+                    AI:{
+                        ...prevState.airline.AI,
+                        name:"India",
+                        data: {data}
+                    }
+                }
+            })) // console log the flight data
         })
+        console.log(flightData)
     }
 
-    
+  
 
     return (
         <FlightPage>
             <form action="" onSubmit={(event)=>{ 
                 event.preventDefault();
-                 getData();
+                getData();
                  }}>
             <SearchBox>
                 <CitySearch>

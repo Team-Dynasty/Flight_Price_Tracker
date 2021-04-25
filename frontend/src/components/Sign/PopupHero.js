@@ -8,9 +8,6 @@ import Login from './Login';
 import Signup from './Signup';
 
 
-
-
-
 export default function CenteredTabs() {
   const [value, setValue] = useState(0);
 

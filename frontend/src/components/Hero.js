@@ -65,18 +65,19 @@ export default function CustomizedTabs() {
   return (
     <div className={classes.root}>
         <div className={classes.demo3}>
-        <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example" centered>
-          <StyledTab label="Flight" />
-          <StyledTab label="Hotels" />
-          <StyledTab label="Experiences" />
-        </StyledTabs>
+          <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example" centered>
+            <StyledTab label="Flights" />
+            <StyledTab label="Hotels" />
+            <StyledTab label="Experiences" />
+          </StyledTabs>
         </div>
+
         <TabPanel>
         { value === 0 && <Flight/>}
         { value === 1 && <Experience/>}
         { value === 2 && <Hotels/>}
         </TabPanel>
-
+        
     </div>
   );
 }
