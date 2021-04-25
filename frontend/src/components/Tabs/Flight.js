@@ -46,6 +46,7 @@ function Flight() {
             return response.json();
         })
         .then((data)=>{
+
             setFlightData((prevState)=>({
                 airline:{
                     ...prevState.airline,
@@ -91,7 +92,6 @@ export default Flight
 
 
 const FlightPage = styled.div `
-
 `
 
 const SearchBox = styled.div `
@@ -103,13 +103,10 @@ input{
 }
 `
 const CitySearch = styled.div `
-
 `;
 
 const DatePicker = styled.div `
-
 `;
 
 const Guests = styled.div `
-
 `;
