@@ -1,14 +1,15 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
-const app = firebase.initializeApp({
-    apiKey: "AIzaSyCy2PqUYnrU3P-mYxyvpd6yiVns5JxLip8",
-    authDomain: "flightpricetracker-9c83c.firebaseapp.com",
-    projectId: "flightpricetracker-9c83c",
-    storageBucket: "flightpricetracker-9c83c.appspot.com",
-    messagingSenderId: "552790827931",
-    appId: "1:552790827931:web:387eaab57bb87ec8e4b73e",
-    measurementId: "G-JHWQJXHM81"
-})
-export const auth = app.auth()
-export default app
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBMjkRN0U7KnGuQJwp6KK4ttx0jFyfxnq0",
+    authDomain: "flightpricetracker-d3b86.firebaseapp.com",
+    projectId: "flightpricetracker-d3b86",
+    storageBucket: "flightpricetracker-d3b86.appspot.com",
+    messagingSenderId: "577323088779",
+    appId: "1:577323088779:web:e63923c3e0cac7d0264d8e"
+  };
+  // Initialize Firebase
+const fire = firebase.initializeApp(firebaseConfig);
+export default fire;

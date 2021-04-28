@@ -1,9 +1,9 @@
 // import React from 'react'
-import React, {useRef} from 'react'
+import React,{useRef} from 'react'
+import {useEffect} from 'react'
 import styled from 'styled-components'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form,Button,Card} from 'react-bootstrap'
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -11,13 +11,24 @@ const useStyles = makeStyles((theme) => ({
         width:'500px'
     }
   }));
+function Login(props){
+    const{
+    email, 
+    setEmail, 
+    password, 
+    setPassword,
+    handleLogin,
+    handleSignup,
+    hasAccount,
+    setHasAccount,
+    emailError,
+    passwordError,
+}=props;
 
 
-function Login() {
-    const classes = useStyles();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const passwordConfirmRef = useRef();
+    // const emailRef = useRef();
+    // const passwordRef = useRef();
+    // const passwordConfirmRef = useRef();
     return (
         <Container>
             <Card >
@@ -26,18 +37,35 @@ function Login() {
                 <Form>
                     <Form.Group >
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" ref={emailRef} required />
+                        <Form.Control
+                         type="email"
+                        //  ref={emailRef} 
+                         required 
+                         value={email} 
+                         onChange={(e)=> setEmail(e.target.value)}
+                         />
+                         <p className="errorMsg">{emailError}</p>
                     </Form.Group>
                     <Form.Group >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" ref={passwordRef} required />
+                        <Form.Control 
+                        type="password" 
+                        // ref={passwordRef}
+                        required 
+                        value={password} 
+                         onChange={(e)=> setPassword(e.target.value)}
+                        />
+                        <p className="errorMsg" >{passwordError}</p>
                     </Form.Group>
-                    <Form.Group >
+                    {/* <Form.Group >
                         <Form.Label>Password Confirmation</Form.Label>
                         <Form.Control type="password" ref={passwordConfirmRef} required />
-                    </Form.Group>
+                    </Form.Group> */}
                     <Container>
-                    <Button className="w-100" type="submit">Login</Button>
+                    {/* <Button className="w-100" type="submit">Login</Button> */}
+
+                    <Button className="w-40" onClick={handleLogin}>Login</Button>
+
                     </Container>
                 </Form>
                 </Card.Body>
@@ -48,9 +76,8 @@ function Login() {
         </Container>
     )
 }
-
 export default Login
 const Container = styled.div `
     background-color:white;
-    margin-bottom:10px;
+    margin-bottom:20px;
 `

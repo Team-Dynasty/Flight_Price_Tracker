@@ -90,6 +90,7 @@ function Flight() {
             return response.json();
         })
         .then((data)=>{
+        
             // setFlightData((prevState)=>({
             //     airline:{
             //         ...prevState.airline,
@@ -101,6 +102,9 @@ function Flight() {
             //     }
             // })) // console log the flight data
             setFlightData(data)
+
+            console.log(data.data)
+            
         })
 
         console.log(flightData)

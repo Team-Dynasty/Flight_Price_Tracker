@@ -2,39 +2,71 @@ import React, {useRef} from 'react'
 import styled from 'styled-components'
 import { Form,Button,Card} from 'react-bootstrap'
 
-function Signup() {
+function Signup(props) {
+    const{
+        email, 
+        setEmail, 
+        password, 
+        setPassword,
+        handleLogin,
+        handleSignup,
+        hasAccount,
+        setHasAccount,
+        emailError,
+        passwordError,
+    }=props;
+
     const nameRef = useRef();
     const phoneRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
-    const passwordConfirmRef = useRef();
     return (
         <Container>
             <Card>
                 <Card.Body>
                     <h2 className ="text-center ">Sign Up</h2>
-                <Form>
-                    <Form.Group id="name">
+                    <Form>
+                    <Form.Group >
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="name" ref={nameRef} required />
-                    </Form.Group>
-                    <Form.Group id="phonenumber">
-                        <Form.Label>Phone no</Form.Label>
-                        <Form.Control type="phonenumber" ref={phoneRef} required />
-                    </Form.Group>
-                    <Form.Group id="email">
+                        <Form.Control
+                         type="text"
+                         ref={nameRef} 
+                         required 
+                         />
+                        <Form.Label>Phone no.</Form.Label>
+                        <Form.Control
+                         type="number"
+                         ref={phoneRef} 
+                         required 
+                         />
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" ref={emailRef} required />
+                        <Form.Control
+                         type="email"
+                         ref={emailRef} 
+                         required 
+                         value={email} 
+                         onChange={(e)=> setEmail(e.target.value)}
+                         />
+                         {/* <p className="errorMsg">{emailError}</p> */}
                     </Form.Group>
-                    <Form.Group id="password">
+                    <Form.Group >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" ref={passwordRef} required />
+                        <Form.Control 
+                        type="password" 
+                        ref={passwordRef} 
+                        required 
+                        value={password} 
+                         onChange={(e)=> setPassword(e.target.value)}
+                        />
+                        {/* <p className="errorMsg">{passwordError}</p> */}
                     </Form.Group>
-                    <Form.Group id="password-confirm">
+                    {/* <Form.Group >
                         <Form.Label>Password Confirmation</Form.Label>
                         <Form.Control type="password" ref={passwordConfirmRef} required />
-                    </Form.Group>
-                    <Button className="w-100" type="submit">Signup</Button>
+                    </Form.Group> */}
+                    <Container>
+                    <Button className="w-40" onClick={handleSignup}>Login</Button>
+                    </Container>
                 </Form>
                 </Card.Body>
             </Card>

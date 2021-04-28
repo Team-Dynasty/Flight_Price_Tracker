@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     },
     price:{
         display:'flex',
-        justifyContent:'flex-end'
+        justifyContent:'flex-end',
+        fontSize:"25px"
     }
   }));
 
