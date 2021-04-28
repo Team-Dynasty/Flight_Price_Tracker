@@ -15,7 +15,6 @@ function Flight() {
     const [flightData, setFlightData] = useState({airline});
     const [guest, setGuest] = useState(1);
 
-
     console.log(origin);
 
     const TEQUILA_API_KEY = "NZ1N-dUb46M2DP0wrST6VQXyOJ6ndMpm";
@@ -110,3 +109,4 @@ const DatePicker = styled.div `
 
 const Guests = styled.div `
 `;
+

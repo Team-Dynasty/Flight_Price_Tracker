@@ -1,0 +1,93 @@
+*{
+    margin : 0;
+    padding: 0;
+
+}
+.control{
+    display: flex;
+    justify-self: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    /* margin: 3% 14.5% 3% 14.5%; */
+    box-shadow: 2px 2px 20px grey;
+    width: 70%;
+    margin: 3% 0% 3% 0%;
+}
+
+.input, .input1, .input2,  .input3{
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0);
+    height: 60px;
+    outline: none;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 25%;
+}
+
+/* .input, .input1, .input2,  .input3 :hover{
+    background-color: rosybrown;
+} */
+
+.a{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.input:hover{
+    background-color:rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    transition: ease-in 0.1s;
+}
+.input1:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    transition: ease-in 0.1s;
+}
+.input2:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    transition: ease-in 0.1s;
+}
+.input3:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    transition: ease-in 0.2s;
+}
+
+.line{
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 1px;
+    height: 70%;
+    margin: auto;
+}
+
+/* .search_icon{
+    width: 3%;
+
+} */
+.search{
+    width: 6%;
+    /* height: 10%; */
+    border-radius: 50%;
+    background-color: #ff385c;
+    margin: 9px;
+    box-shadow:0px 0px 7px rgb(68, 64, 64);
+}
+
+.search:hover{
+    background-color:#da3c69;
+}
+
+.search_icon{
+     color: white;
+     
+     
+}
+.search_icon:hover{
+    background-color:rgb(27, 27, 3);
+    width: 2%;
+    border-radius: 50%;
+
+}
