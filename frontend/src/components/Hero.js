@@ -67,21 +67,42 @@ export default function CustomizedTabs() {
         <div className={classes.demo3}>
           <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example" centered>
             <StyledTab label="Flights" />
-            <StyledTab label="Hotels" />
             <StyledTab label="Experiences" />
+            <StyledTab label="Hotels" />
           </StyledTabs>
+          <TabPanel>
+          <Span>
+          { value === 0 && <Flight/>}
+          { value === 1 && <Experience/>}
+          { value === 2 && <Hotels/>}
+          </Span>
+          <BackgroundImage>
+          </BackgroundImage>
+          </TabPanel>
+          
         </div>
-
-        <TabPanel>
-        { value === 0 && <Flight/>}
-        { value === 1 && <Experience/>}
-        { value === 2 && <Hotels/>}
-        </TabPanel>
-        
     </div>
   );
 }
 
 const TabPanel = styled.div `
+width:100%;
+height:calc(100vh - 131px);
 background-color:black;
+margin-top:20px;
+`
+const Span = styled.div `
+z-index:100;
+`
+const BackgroundImage = styled.div `
+background-image:linear-gradient(0deg, rgba(255, 255, 250, 0.4), rgba(255, 255, 250, 0)), url('/airplane.jpg');
+background-size:cover;
+display:flex;
+justify-content:center;
+width:90%;
+height:500px;
+margin-top:-50px;
+background-color: red;
+margin-left:auto;
+margin-right:auto;
 `
