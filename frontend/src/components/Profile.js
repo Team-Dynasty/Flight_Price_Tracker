@@ -72,7 +72,7 @@ export default function MenuPopupState() {
           <StyleTextField {...bindMenu(popupState)}>
             <span aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
               <MenuItem onClick={popupState.close}>Log in</MenuItem>
-            <MenuItem onClick={popupState.close}>Sign up</MenuItem>
+              <MenuItem onClick={popupState.close}>Sign up</MenuItem>
             </span>
           </StyleTextField>
         </React.Fragment>
@@ -84,7 +84,7 @@ export default function MenuPopupState() {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorReference="anchorPosition"
-        anchorPosition={{ top: 200, left: 750 }}
+        anchorPosition= {{left: 0, top: 0}}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',

@@ -16,7 +16,7 @@ export default function CenteredTabs() {
   };
 
   return (
-    <>
+    <Profile>
       <TopTab
         value={value}
         onChange={handleChange}
@@ -28,16 +28,19 @@ export default function CenteredTabs() {
       { value === 0 && <Login/> }
       { value === 1 && <Signup/> }
 
-
-    </>
+    </Profile>
   );
 }
+
+const Profile = styled.div `
+margin:auto;
+
+`
 
 
 const TopTab = styled(Tabs)`
     flex-grow:2;
     color:black;
-    background-color:white;
     display:flex;
     width:auto;
     .MuiTab-root {

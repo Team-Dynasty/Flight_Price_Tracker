@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
       height:'auto',
       color: 'white',
       margin:'2px',
+
     },
     container: {
         display:'inline-block',
@@ -194,7 +195,8 @@ export default Flight
 
 const FlightPage = styled.div `
 display:flex;
-justify-content:center;
+flex-direction:column;
+align-items:center;
 padding:10px;
 `
 const SearchBox = styled.div `
@@ -205,7 +207,6 @@ input{
     outline:none;
 }
 `
-
 const Datepicker = styled.div `
 margin-top:8px;
 display:flex;

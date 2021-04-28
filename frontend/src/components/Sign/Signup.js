@@ -49,4 +49,5 @@ export default Signup
 
 const Container = styled.div `
     background-color:white;
+    margin-bottom:20px;
 `
