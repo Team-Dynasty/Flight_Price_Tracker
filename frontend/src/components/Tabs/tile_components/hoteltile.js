@@ -58,7 +58,7 @@ function HotelTile({ name, image, reviews, address, price, stars}) {
                 Panchavati Nagar, Arvi Road, Pipri Meghe, Wardha
             </Typography>
             <Typography variant="subtitle3" color="textSecondary">
-                4-star
+                {stars}-star
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
                 Mac Miller
@@ -70,7 +70,7 @@ function HotelTile({ name, image, reviews, address, price, stars}) {
         </div>
         <div className="hotel__pricing">
             <Typography className={classes.price} variant="subtitle2" color="textSecondary">
-                Mac Miller
+                {price}
             </Typography>
         </div>
       

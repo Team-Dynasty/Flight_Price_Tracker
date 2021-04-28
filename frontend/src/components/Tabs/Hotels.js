@@ -42,11 +42,11 @@ function Hotels({center,zoom}) {
       checkOut: '2021-01-28',
       rooms: '1',
       locale: 'en_US',
-      currency: 'USD',
+      currency: 'INR',
       pageNumber: '1'
     },
     headers: {
-      'x-rapidapi-key': '97e13c05afmsh1139b7103c30e06p141cddjsn79038da49dd2',
+      'x-rapidapi-key': '34939e322amsh6e4158ae52ddaaap1bd415jsna01f1bee3dba',
       'x-rapidapi-host': 'hotels-com-free.p.rapidapi.com'
     }
   };
@@ -58,9 +58,7 @@ function Hotels({center,zoom}) {
     const [query, setQuery] = useState("");
     const [Hotels, setHotels] = useState([]);
 
-    useEffect(()=>{
-        getData();
-    }, [])
+  
   
     const getData = async () => {
       await axios.request(options)
@@ -125,21 +123,19 @@ function Hotels({center,zoom}) {
                 </Fab>
             </form>
             </Paper> */}
-        
-
-
-
 
          <HotelListing>
+         {console.log(Hotels['0'])}
           {
-            Hotels.map((data)=>{
+          
+            Hotels.filter((data)=> (data.ratePlan != undefined)).map((data)=>{
               return <HotelTile name={data.name} image={data.optimizedThumbUrls.srpDesktop} 
-              reviews={data.guestReviews} stars={data.starRating} address={data.address} />
+              reviews={data.guestReviews} price={data.ratePlan["price"].exactCurrent} stars={data.starRating} address={data.address} />
             })
           }
         </HotelListing>
         <HotelMapping>
-
+        <button onClick={getData}>search</button>
         </HotelMapping> 
       
       </HotelPage>
@@ -150,16 +146,22 @@ export default Hotels
 
 const HotelPage = styled.div `
 display:grid;
+width:100%;
 grid-template-columns: 50% auto;
 height:calc(100vh - 111px);
 `
 const HotelListing = styled.div `
 height:100%;
 background-color:black;
+overflow-y:scroll;
+::-webkit-scrollbar{
+ display:none; 
+}
 `
 const HotelMapping = styled.div `
 height:100%;
 background-color:red;
+
 
 `
 const Datepicker = styled.div `

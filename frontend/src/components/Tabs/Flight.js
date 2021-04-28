@@ -8,6 +8,8 @@ import {KeyboardDatePicker} from "@material-ui/pickers";
 import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import SearchIcon from '@material-ui/icons/Search';
+import Card from './Card';
+
 
 const useStyles = makeStyles((theme) => ({
     from: {
@@ -100,6 +102,7 @@ function Flight() {
             // })) // console log the flight data
             setFlightData(data)
         })
+
         console.log(flightData)
     }
 
@@ -187,6 +190,8 @@ function Flight() {
             </SearchBox>
             </form>
             </Paper>
+
+            <Card/>
         </FlightPage>
     )
 }
@@ -198,6 +203,15 @@ display:flex;
 flex-direction:column;
 align-items:center;
 padding:10px;
+background-image: url('/air.webp');
+background-size:cover;
+justify-content:center;
+width:90%;
+height:580px;
+margin-top:50px;
+background-color: red;
+margin-left:auto;
+margin-right:auto;
 `
 const SearchBox = styled.div `
 display:flex;
