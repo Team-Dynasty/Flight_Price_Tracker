@@ -17,14 +17,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleAccordion() {
+export default function SimpleAccordion({flightno,price, arrival,departure,destination,origin}) {
   const classes = useStyles();
-
+  var d1 = new Date(departure) 
+  var d2 = new Date(arrival)
+  var DepartureTime = `${d1.getUTCHours()}:${d1.getUTCMinutes()=='0'? '00': d1.getUTCMinutes()}`
+  var ArrivalTime = `${d2.getUTCHours()}:${ (d2.getUTCMinutes()=='0') ? `${d2.getUTCMinutes()}0`: d2.getUTCMinutes()}`
+  var time = `${DepartureTime} - ${ArrivalTime}`
+  var duration = `${d2.getUTCHours() - d1.getUTCHours()}:${ (d2.getUTCMinutes() - d1.getUTCMinutes())<0?(d1.getUTCMinutes() - d2.getUTCMinutes()):(d2.getUTCMinutes() - d1.getUTCMinutes())}`
   return (
     <div className={classes.root}>
 
       <div className="F1">
-
+ 
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -32,19 +37,19 @@ export default function SimpleAccordion() {
           id="panel1a-header"
         >
           <div className="flight_container">
-            <div className="logo">Logo</div>
+            <div className="logo">{flightno}</div>
             <div className="time_flight_container">
-              <div className="time">Time</div>
-              <div className="flight_name">Flight Name</div>
+              <div className="time">{time}</div>
+              <div className="flight_name">{flightno}</div>
             </div>
             <div className="duration_destination_container">
-              <div className="duration">Duration</div>
-              <div className="destination">Destination</div>
+              <div className="duration">{duration} hr</div>
+              <div className="destination">{origin} - {destination}</div>
             </div>
-            <div className="stop">Stop</div>
+            <div className="stop">No-Stop</div>
             <div className="select_flight">Select Flight</div>
             <div className="price_trip_container">
-              <div className="price">Price</div>
+              <div className="price">{price} ₹</div>
               <div className="trip">Trip</div>
             </div>
           </div>
@@ -58,21 +63,21 @@ export default function SimpleAccordion() {
           <div className="source">
            <div className="dot"></div>
            <div className="source_time">
-            <div className="source_arrival_time">6 AM</div>
+            <div className="source_arrival_time">{ArrivalTime}</div>
             <div className="dot_1">&nbsp;</div>
-            <div className="from"> Dr. Babasaheb Ambedkar International Airport (NAG)</div>
+            <div className="from">{origin}</div>
            </div>
           </div>
           <div className="duration_internal">
             <div className="t">Travel Time: </div>
-            <div className="travel_time">1 Min</div>
+            <div className="travel_time">{duration} hr</div>
           </div>
           <div className="destination">
            <div className="dot"></div>
            <div className="destination_time">
-            <div className="destination_arrival_time">6:01 AM</div>
+            <div className="destination_arrival_time">{DepartureTime}</div>
             <div className="dot_1"></div>
-            <div className="to">Chhatrapati Shivaji Maharaj International Airport (BOM)</div>
+            <div className="to">{destination}</div>
           </div>
           </div>
           </div>

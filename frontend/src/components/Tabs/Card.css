@@ -5,11 +5,14 @@
 }
 
 .F1{
-    width: 84.5%;
+    width: 100%;
     margin: auto;
-    margin-top: 15%;
-    margin-bottom: 30px;
-    box-shadow: 0 0 30px black;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15), 
+    0 2px 2px rgba(0,0,0,0.15), 
+    0 4px 4px rgba(0,0,0,0.15), 
+    0 8px 8px rgba(0,0,0,0.15);
 }
 
 .flight_container{

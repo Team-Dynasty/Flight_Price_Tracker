@@ -34,9 +34,12 @@ const useStyles = makeStyles((theme) => ({
       width: 38,
     },
     price:{
+        color:'green',
         display:'flex',
+        alignItems:'center',
         justifyContent:'flex-end',
-        fontSize:"25px"
+        fontSize:'25px',
+        padding:'10px'
     }
   }));
 
@@ -61,12 +64,6 @@ function HotelTile({ name, image, reviews, address, price, stars}) {
             <Typography variant="subtitle3" color="textSecondary">
                 {stars}-star
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-                Mac Miller
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
-                Mac Miller
-            </Typography>
             </CardContent>
         </div>
         <div className="hotel__pricing">
@@ -81,29 +78,3 @@ function HotelTile({ name, image, reviews, address, price, stars}) {
 
 export default HotelTile
 
-// import React, { useEffect } from "react";
-// import "./hoteltile.css";
-// import { v4 as uuidv4 } from "uuid";
-
-// export default function HotelTile({ hotel }) {
-//   return (
-//     hotel[0]["optimizedThumbUrls"]["srpDesktop"].match(/\.(jpeg|jpg|gif|png)$/) != null && (
-//       <div
-//         className="recipeTile"
-//         onClick={() => window.open(hotel["recipe"]["url"])}
-//       >
-//          <div className="bigtile">
-//         <img className="recipeTile__img" src={hotel["0"]["optimizedThumbUrls"]["srpDesktop"]} />
-//         {/* <div className="imgtext">
-//           <p>{recipe["recipe"]["ingredientLines"]["0"]}  </p>
-//           <p>{recipe["recipe"]["ingredientLines"]["1"]}  </p>
-//           <p>{recipe["recipe"]["ingredientLines"]["2"]}  </p>
-//         </div> */}
-//         </div>
-//         <p className="recipeTile__name" key={uuidv4()}>
-//           {hotel["name"]}
-//         </p>
-//       </div>
-//     )
-//   );
-// }
