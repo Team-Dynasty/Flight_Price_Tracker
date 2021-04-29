@@ -5,22 +5,110 @@
 }
 
 .F1{
-    margin: 10% 10% 1% 10%;
-    box-shadow: 0px 4px 15px grey;
-    
-    
-}
-.F2{
-    margin: 0% 10% 1% 10%;
-    box-shadow: 0px 4px 15px grey;
-
+    width: 84.5%;
+    margin: auto;
+    margin-top: 15%;
+    margin-bottom: 30px;
+    box-shadow: 0 0 30px black;
 }
 
-.F3{
-    margin: 0% 10% 1% 10%;
-    box-shadow: 0px 4px 15px grey;
-    margin-bottom: 10%;
-    
+.flight_container{
+    width: 100%;
 }
 
- 
+.logo{
+    width: 7%;
+    float: left;
+}
+
+.time_flight_container{
+    width: 40%;
+    float: left;
+}
+
+.duration_destination_container{
+    width: 20%;
+    float: left;
+}
+
+.stop{
+    width: 8%;
+    float: left;
+}
+
+.select_flight{
+    width: 10%;
+    float: left;
+    display: none;
+}
+
+.price_trip_container{
+    width: 15%;
+    float: left;
+}
+
+.price{
+    text-align: right;
+    font-weight:  bolder;
+    color: green;
+}
+
+.trip{
+    text-align: right;
+}
+
+.time{
+    font-weight: bold;
+}
+
+.flight_details{
+    width: 100%;
+}
+
+.line{
+    width: 100%;
+    display: block;
+    background-color: grey;
+    height: 1px;
+}
+
+/* .logo_internal{
+    width: 70%;
+    display: block;
+} */
+
+.details{
+    width: 93%;
+    float: right;
+}
+
+.source_arrival_time, .from, .destination_arrival_time, .to,.t, .travel_time, .dot_1{
+    display: inline-block;
+}
+
+/* .duration_internal{
+    display: block;
+} */
+
+/* .source_time{
+    display: inline-block;
+} */
+
+.travel_time{
+    padding: 10px;
+}
+
+.source_arrival_time, .destination_arrival_time{
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.t, .travel_time{
+    color: grey;
+    padding-left: 10px;
+}
+
+.source{
+    margin-top: 10px;
+}

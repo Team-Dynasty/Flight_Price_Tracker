@@ -11,8 +11,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {KeyboardDatePicker} from "@material-ui/pickers";
 import GoogleMapReact from 'google-map-react'; 
-import HotelTile from './tile_components/HotelTile';
-// import HotelTile from "./tile_components/hoteltile";
+// import HotelTile from './tile_components/HotelTile';
+import HotelTile from "./tile_components/hoteltile";
 const useStyles = makeStyles((theme) => ({
   from: {
     width: '300px',

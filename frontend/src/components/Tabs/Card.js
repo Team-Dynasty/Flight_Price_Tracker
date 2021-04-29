@@ -31,62 +31,55 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>
-           <div>Flight 1 </div>
-           <div>duration</div>
-          <div>price</div>  
-          </Typography>
+          <div className="flight_container">
+            <div className="logo">Logo</div>
+            <div className="time_flight_container">
+              <div className="time">Time</div>
+              <div className="flight_name">Flight Name</div>
+            </div>
+            <div className="duration_destination_container">
+              <div className="duration">Duration</div>
+              <div className="destination">Destination</div>
+            </div>
+            <div className="stop">Stop</div>
+            <div className="select_flight">Select Flight</div>
+            <div className="price_trip_container">
+              <div className="price">Price</div>
+              <div className="trip">Trip</div>
+            </div>
+          </div>
           
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
+        <div className="flight_details">
+        <div className="line"></div>
+        <div className="logo_internal"></div>
+        <div className="details">
+          <div className="source">
+           <div className="dot"></div>
+           <div className="source_time">
+            <div className="source_arrival_time">6 AM</div>
+            <div className="dot_1">&nbsp;</div>
+            <div className="from"> Dr. Babasaheb Ambedkar International Airport (NAG)</div>
+           </div>
+          </div>
+          <div className="duration_internal">
+            <div className="t">Travel Time: </div>
+            <div className="travel_time">1 Min</div>
+          </div>
+          <div className="destination">
+           <div className="dot"></div>
+           <div className="destination_time">
+            <div className="destination_arrival_time">6:01 AM</div>
+            <div className="dot_1"></div>
+            <div className="to">Chhatrapati Shivaji Maharaj International Airport (BOM)</div>
+          </div>
+          </div>
+          </div>
+        </div>
         </AccordionDetails>
       </Accordion>
       </div>
-
-      <div className= "F2">
-
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>Flight 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      </div>
-
-      <div className= "F3">
-
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>Flight 3</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-        
-      </Accordion>
-      </div>
-      
-      
     </div>
   );
 }
