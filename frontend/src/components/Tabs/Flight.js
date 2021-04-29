@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import SearchIcon from '@material-ui/icons/Search';
 import Card from './Card';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +61,7 @@ function Flight() {
     
     const getOriginCityCode= async(city)=>{
         await fetch(`https://tequila-api.kiwi.com/locations/query?apikey=${TEQUILA_API_KEY}&term=${city}&location_types=city`)
-        .then(response=>{return response?.json()})
+        .then(response=> {return response?.json()})
         .then((data)=>{
             setOriginCityCode(data["locations"][0]["code"])
         })
@@ -75,21 +76,18 @@ function Flight() {
     }
 
     const getDate = (d)=>{
-        return `${d.getDate()}/${(d.getMonth()+1)> 9?(d.getMonth()):("0"+(d.getMonth()+1))}/${d.getFullYear()}`
+         return `${d.getDate()}/${(d.getMonth()+1)> 9?(d.getMonth()):("0"+(d.getMonth()+1))}/${d.getFullYear()}`
     }
 
     const getData = async ()=>{
         await getOriginCityCode(origin);
         await getDestinationCityCode(destination);
-        setFromTime(getDate(selectedDate));
-        setToTime(getDate(selectedDate1));
+        await setFromTime(getDate(selectedDate));
+        await setToTime(getDate(selectedDate1));
         const url = `https://tequila-api.kiwi.com/v2/search?apikey=${TEQUILA_API_KEY}&fly_from=${originCityCode}&fly_to=${destinationCityCode}&date_from=${fromTime}&date_to=${toTime}&sort=price&max_stopovers=0&curr=INR`
 
-        await fetch(url)
-        .then(response => {
-            return response.json();
-        })
-        .then((data)=>{
+        axios.get(url)
+        .then((response)=>{
         
             // setFlightData((prevState)=>({
             //     airline:{
@@ -101,12 +99,13 @@ function Flight() {
             //         }
             //     }
             // })) // console log the flight data
-            setFlightData(data)
-
-            console.log(data.data)
+            setFlightData(response)
+           
+            console.log(response.data)
             
         })
-
+        console.log(destinationCityCode)
+        console.log(originCityCode)
         console.log(flightData)
     }
 
@@ -169,7 +168,7 @@ function Flight() {
                         autoOk
                         variant="inline"
                         inputVariant="outlined"
-                        label="Arrival Date"
+                        label="Departure Date"
                         format="dd/MM/yyyy"
                         value={selectedDate}
                         onChange={handleDateChange}
@@ -180,7 +179,7 @@ function Flight() {
                         autoOk
                         variant="inline"
                         inputVariant="outlined"
-                        label="Departure Date"
+                        label="Return Date"
                         format="dd/MM/yyyy"
                         value={selectedDate1}
                         onChange={handleDateChange1}
@@ -207,23 +206,11 @@ display:flex;
 flex-direction:column;
 align-items:center;
 padding:10px;
-background-image: url('/air.webp');
-background-size:cover;
-justify-content:center;
-width:90%;
-height:580px;
-margin-top:50px;
-background-color: red;
-margin-left:auto;
-margin-right:auto;
 `
 const SearchBox = styled.div `
 display:flex;
 justify-content:center;
 align-items:center;
-input{
-    outline:none;
-}
 `
 const Datepicker = styled.div `
 margin-top:8px;

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'grid',
       gridTemplateColumns:"300px auto 100px",
-      height:'250px',
+      height:'150px',
       margin:'5px',
     },
     details: {
@@ -56,7 +56,7 @@ function HotelTile({ name, image, reviews, address, price, stars}) {
                 {name}
             </Typography>
             <Typography variant="body2" color="textSecondary">
-                Panchavati Nagar, Arvi Road, Pipri Meghe, Wardha
+                {address.streetAddress},{address.locality}
             </Typography>
             <Typography variant="subtitle3" color="textSecondary">
                 {stars}-star

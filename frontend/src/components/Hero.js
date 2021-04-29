@@ -71,15 +71,14 @@ export default function CustomizedTabs() {
             <StyledTab label="Hotels" />
           </StyledTabs>
           <TabPanel>
-  
+          <BackgroundImage>
           <Span>
           { value === 0 && <Flight/>}
           { value === 1 && <Experience/>}
           { value === 2 && <Hotels/>}
           </Span>
-   
+          </BackgroundImage>
           </TabPanel>
-          
         </div>
     </div>
   );
@@ -92,16 +91,15 @@ background-color:black;
 margin-top:20px;
 `
 const Span = styled.div `
-z-index:100;
+
 `
 const BackgroundImage = styled.div `
-background-image: url('/air.webp');
+background-image:url('/airplane.jpg');
 background-size:cover;
 display:flex;
 justify-content:center;
 width:90%;
-height:580px;
-margin-top:50px;
+height:600px;
 background-color: red;
 margin-left:auto;
 margin-right:auto;
