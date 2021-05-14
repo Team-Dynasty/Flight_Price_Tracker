@@ -39,7 +39,7 @@ function Flight() {
     var d = new Date(); //date object
 
     //Location Data
-    const [origin, setOrigin] = useState("New-delhi"); 
+    const [origin, setOrigin] = useState("Nagpur"); 
     const [originCityCode, setOriginCityCode] = useState();
     const [destinationCityCode, setDestinationCityCode] = useState();
     const [destination, setDestination] = useState("Mumbai"); //
@@ -57,17 +57,19 @@ function Flight() {
 
     console.log(origin);
     const [trip, setTrip] = useState("round");
-    const TEQUILA_API_KEY = "NZ1N-dUb46M2DP0wrST6VQXyOJ6ndMpm";
+    const TEQUILA_API_KEY = "3mHLBZtsaOzZJB4p58sfIAfxLKMF239G";
     
     const getOriginCityCode= async(city)=>{
-        await fetch(`https://tequila-api.kiwi.com/locations/query?apikey=${TEQUILA_API_KEY}&term=${city}&location_types=city`)
+        await fetch(`https://tequila-api.kiwi.com/locations/query?apikey=${TEQUILA_API_KEY}/locations/query&term=${city}&location_types=city`)
         .then(response=> {return response?.json()})
         .then((data)=>{
+            console.log(data.data["locations"][0]["code"]);
             setOriginCityCode(data["locations"][0]["code"])
         })
     }
 
     const getDestinationCityCode= async(city)=>{
+        console.log(city);
         await fetch(`https://tequila-api.kiwi.com/locations/query?apikey=${TEQUILA_API_KEY}&term=${city}&location_types=city`)
         .then(response=>{return response?.json()})
         .then((data)=>{
@@ -80,13 +82,17 @@ function Flight() {
     }
 
     const getData = async () => {
-        await getOriginCityCode(origin);
-        await getDestinationCityCode(destination);
+        console.log(origin);
+        getOriginCityCode(origin);
+        getDestinationCityCode(destination);
         await setFromTime(getDate(selectedDate));
         await setToTime(getDate(selectedDate1));
         const url = `https://tequila-api.kiwi.com/v2/search?apikey=${TEQUILA_API_KEY}&fly_from=${originCityCode}&fly_to=${destinationCityCode}&date_from=${fromTime}&date_to=${toTime}&sort=price&max_stopovers=0&curr=INR`
-        axios.get(url)
-        .then((response)=>{
+        await fetch(url)
+        .then(response => {
+            return response.json();
+        })
+        .then((data)=>{
             // setFlightData((prevState)=>({
             //     airline:{
             //         ...prevState.airline,
@@ -97,7 +103,9 @@ function Flight() {
             //         }
             //     }
             // })) // console log the flight data
-            setFlightData(response.data.data)
+            setFlightData(data.data)
+
+            console.log(data.data)
         })
     }
 
@@ -203,7 +211,6 @@ function Flight() {
             {console.log(flightData)}
             {flightData.map((data)=>{
                 return (
-                    
                     <Card flightno = {data.route[0].airline} price={data.price} departure={data.local_departure} arrival={data.local_arrival} origin={origin} destination={destination}/>
                 )
             })}

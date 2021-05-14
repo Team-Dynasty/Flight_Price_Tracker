@@ -8,11 +8,16 @@ import Tab from '@material-ui/core/Tab';
 import Login from './Login';
 import Signup from './Signup';
 import fire from '../../firebase'
+import App from '../../App'
+// import db from '../../firebase'
 
 
-export default function CenteredTabs() {
+export default function CenteredTabs() { 
 const [user,setUser]=useState("");
 const [email,setEmail]=useState("");
+const [name,setName]=useState("");
+
+const [contact,setContact]=useState("");
 const [password,setPassword]=useState("");
 const [emailError,setEmailError]=useState("");
 const [passwordError,setpasswordError]=useState("");
@@ -21,58 +26,88 @@ const [hasAccount,setHasAccount]=useState(false);
 const clearInputs=()=>{
   setEmail("");
   setPassword("");
+  setName("");
+  setContact("");
 }
 const clearErrors=()=>{
   setEmailError("");
   setpasswordError("");
 }
 
-const handleLogin = ()=>{
+async function handleLogin(){
   clearErrors();
+  try{
   fire
   .auth()
   .signInWithEmailAndPassword(email,password)
-  .catch(error => {
+  const currentUser = fire.auth().currentUser;
+  console.log(currentUser.email);
+  } catch(error){
     switch(error.code){
       case "auth/invalid-email":
       case "auth/user-disabled":
       case "auth/user-not-found":
         setEmailError(error.message);
         break;
-      case "auth/wrong-passwprd":
+      case "auth/wrong-password":
         setpasswordError(error.message);
         break;
     }
-});
+};
 };
 
-const handleSignup=()=>{
-  clearErrors();
-  fire
-  .auth()
-  .createUserWithEmailAndPassword(email,password)
-  .catch(error => {
+async function handleSignup(){
+  
+  try {
+    
+    await fire.auth().createUserWithEmailAndPassword(email, password);
+    const currentUser = fire.auth().currentUser;
+    console.log(currentUser.uid);
+    const db = fire.firestore();
+    
+
+
+    await db.collection("users")
+      .doc(email)
+      .set({
+        contact:contact,
+        email: email,
+        name: name,
+        querycount:0,
+      });
+      clearErrors();
+  } catch (error) {
     switch(error.code){
-      case "auth/email-already-in-use":
-      case "auth/invalid-email":
-        setEmailError(error.message);
-        break;
-      case "auth/weak-passwprd":
-        setpasswordError(error.message);    
-        break;
-    }
-});
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            setEmailError(error.message);
+            break;
+          case "auth/weak-password":
+            setpasswordError(error.message);    
+            break;
+        }
+  }
 };
 
 const handleLogout=()=>{
   fire.auth().signOut();
 };
 
+// function createDatabase() {
+//   const data={
+//       contact:contact,
+//       email:email,
+//       name:name,
+//       querycount:0,
+//   };
+//   db.collection('users').doc(`${email}`).set(data);
+// }
+
 const authListener=()=>{
   fire.auth().onAuthStateChanged(user =>{
     if(user){
       clearInputs();
-      setUser(user);
+      setUser(user); 
     }else{
       setUser("");
     }
@@ -119,6 +154,8 @@ useEffect(() => {
       <Signup
       email={email} 
       setEmail={setEmail} 
+      setName={setName}
+      setContact={setContact}
       password={password} 
       setPassword={setPassword}
       handleSignup={handleSignup}
@@ -126,6 +163,10 @@ useEffect(() => {
       setHasAccount={setHasAccount}
       emailError={emailError}
       passwordError={passwordError}
+      name={name}
+      setName={setName}
+      contact={contact}
+      setContact={setContact}
       /> }
 
     </Profile>

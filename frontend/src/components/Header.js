@@ -10,7 +10,8 @@ import styled from 'styled-components';
 import {useState} from 'react'
 
 
-function Header() {
+
+function Header(handleLogin) {
     const [selectedTab, setSelectedTab] = useState("0");
     
     const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ function Header() {
     }));
   
     const classes = useStyles();
+
     return (
         <Container>
             <AppBar position="static">
@@ -44,6 +46,7 @@ function Header() {
                     <AppLogo variant="h6" className={classes.title}>
                         Byond
                     </AppLogo>
+                    {/* <botton onClick={handleLogout}>Logout</botton> */}
                     <Profile/>
                 </Toolbar>
             </AppBar>

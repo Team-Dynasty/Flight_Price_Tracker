@@ -62,17 +62,17 @@ function Hotels({center,zoom}) {
     method: 'GET',
     url: 'https://hotels-com-free.p.rapidapi.com/srle/listing/v1/brands/hotels.com',
     params: {
-      lat: '18.5204 ',
-      lon: '73.8567 ',
+      lat: '21.1458',
+      lon: '79.0882',
       checkIn: '2021-01-27',
       checkOut: '2021-01-28',
       rooms: '1',
       locale: 'en_US',
       currency: 'INR',
-      pageNumber: '3'
+      pageNumber: '1'
     },
     headers: {
-      'x-rapidapi-key': '34939e322amsh6e4158ae52ddaaap1bd415jsna01f1bee3dba',
+      'x-rapidapi-key': '17209dfcaemshbb98df90df44dc5p17e8bajsn7efca3608413',
       'x-rapidapi-host': 'hotels-com-free.p.rapidapi.com'
     }
   };

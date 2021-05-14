@@ -7,6 +7,7 @@ import Signup from './components/Sign/Signup'
 import styled from 'styled-components'
 import { Container } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './components/Sign/PopupHero'
 
 function App() {
   return (

@@ -1,6 +1,7 @@
 import React, {useRef} from 'react'
 import styled from 'styled-components'
 import { Form,Button,Card} from 'react-bootstrap'
+import './loginstyle.css'
 
 function Signup(props) {
     const{
@@ -14,7 +15,12 @@ function Signup(props) {
         setHasAccount,
         emailError,
         passwordError,
+        name,
+        setName,
+        contact,
+        setContact
     }=props;
+
 
     const nameRef = useRef();
     const phoneRef = useRef();
@@ -31,13 +37,17 @@ function Signup(props) {
                         <Form.Control
                          type="text"
                          ref={nameRef} 
+                         value={name}
                          required 
+                         onChange={(e)=> setName(e.target.value)}
                          />
                         <Form.Label>Phone no.</Form.Label>
                         <Form.Control
                          type="number"
                          ref={phoneRef} 
+                         value={contact}
                          required 
+                         onChange={(e)=> setContact(e.target.value)}
                          />
                         <Form.Label>Email</Form.Label>
                         <Form.Control
@@ -47,7 +57,7 @@ function Signup(props) {
                          value={email} 
                          onChange={(e)=> setEmail(e.target.value)}
                          />
-                         {/* <p className="errorMsg">{emailError}</p> */}
+                         <p className="errorMsg">{emailError}</p>
                     </Form.Group>
                     <Form.Group >
                         <Form.Label>Password</Form.Label>
@@ -58,7 +68,7 @@ function Signup(props) {
                         value={password} 
                          onChange={(e)=> setPassword(e.target.value)}
                         />
-                        {/* <p className="errorMsg">{passwordError}</p> */}
+                        <p className="errorMsg">{passwordError}</p>
                     </Form.Group>
                     {/* <Form.Group >
                         <Form.Label>Password Confirmation</Form.Label>

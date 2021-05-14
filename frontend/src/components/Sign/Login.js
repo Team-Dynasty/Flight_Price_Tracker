@@ -4,6 +4,8 @@ import {useEffect} from 'react'
 import styled from 'styled-components'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form,Button,Card} from 'react-bootstrap'
+import './loginstyle.css'
+import '../../App'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,9 +40,9 @@ function Login(props){
                     <Form.Group >
                         <Form.Label>Email</Form.Label>
                         <Form.Control
-                         type="email"
-                        //  ref={emailRef} 
+                         type="email" 
                          required 
+                         autoFocus
                          value={email} 
                          onChange={(e)=> setEmail(e.target.value)}
                          />
@@ -49,23 +51,15 @@ function Login(props){
                     <Form.Group >
                         <Form.Label>Password</Form.Label>
                         <Form.Control 
-                        type="password" 
-                        // ref={passwordRef}
+                        type="password"
                         required 
                         value={password} 
                          onChange={(e)=> setPassword(e.target.value)}
                         />
                         <p className="errorMsg" >{passwordError}</p>
                     </Form.Group>
-                    {/* <Form.Group >
-                        <Form.Label>Password Confirmation</Form.Label>
-                        <Form.Control type="password" ref={passwordConfirmRef} required />
-                    </Form.Group> */}
                     <Container>
-                    {/* <Button className="w-100" type="submit">Login</Button> */}
-
                     <Button className="w-40" onClick={handleLogin}>Login</Button>
-
                     </Container>
                 </Form>
                 </Card.Body>
