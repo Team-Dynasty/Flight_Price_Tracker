@@ -54,27 +54,46 @@ function Flight() {
     const [flightData, setFlightData] = useState([]);
     const [guest, setGuest] = useState(1);
 
-
-    console.log(origin);
     const [trip, setTrip] = useState("round");
     const TEQUILA_API_KEY = "3mHLBZtsaOzZJB4p58sfIAfxLKMF239G";
     
+    
     const getOriginCityCode= async(city)=>{
-        await fetch(`https://tequila-api.kiwi.com/locations/query?apikey=${TEQUILA_API_KEY}/locations/query&term=${city}&location_types=city`)
-        .then(response=> {return response?.json()})
-        .then((data)=>{
-            console.log(data.data["locations"][0]["code"]);
-            setOriginCityCode(data["locations"][0]["code"])
-        })
+        axios.request({
+            method: 'GET',
+            url: 'https://tequila-api.kiwi.com/locations/query',
+            params: {
+              term: origin,
+              location_types: 'city',
+            },
+            headers: {
+              'apikey': 'NZ1N-dUb46M2DP0wrST6VQXyOJ6ndMpm',
+            }})
+            .then(function (response) {
+                setOriginCityCode(response.data.locations[0].code)
+                console.log(response.data.locations[0].code);
+            }).catch(function (error) {
+                console.error(error);
+            });
     }
 
     const getDestinationCityCode= async(city)=>{
-        console.log(city);
-        await fetch(`https://tequila-api.kiwi.com/locations/query?apikey=${TEQUILA_API_KEY}&term=${city}&location_types=city`)
-        .then(response=>{return response?.json()})
-        .then((data)=>{
-            setDestinationCityCode(data["locations"][0]["code"])
-        })
+        axios.request({
+            method: 'GET',
+            url: 'https://tequila-api.kiwi.com/locations/query',
+            params: {
+              term: destination,
+              location_types: 'city',
+            },
+            headers: {
+              'apikey': 'NZ1N-dUb46M2DP0wrST6VQXyOJ6ndMpm',
+            }})
+            .then(function (response) {
+                setDestinationCityCode(response.data.locations[0].code)
+                console.log(response.data.locations[0].code);
+            }).catch(function (error) {
+                console.error(error);
+            });
     }
 
     const getDate = (d)=>{
@@ -87,42 +106,34 @@ function Flight() {
         getDestinationCityCode(destination);
         await setFromTime(getDate(selectedDate));
         await setToTime(getDate(selectedDate1));
-        const url = `https://tequila-api.kiwi.com/v2/search?apikey=${TEQUILA_API_KEY}&fly_from=${originCityCode}&fly_to=${destinationCityCode}&date_from=${fromTime}&date_to=${toTime}&sort=price&max_stopovers=0&curr=INR`
-        await fetch(url)
-        .then(response => {
-            return response.json();
-        })
-        .then((data)=>{
-            // setFlightData((prevState)=>({
-            //     airline:{
-            //         ...prevState.airline,
-            //         AI:{
-            //             ...prevState.airline.AI,
-            //             name:"India",
-            //             data: {data}
-            //         }
-            //     }
-            // })) // console log the flight data
-            setFlightData(data.data)
 
-            console.log(data.data)
-        })
+        axios.request({
+            method: 'GET',
+            url: 'https://tequila-api.kiwi.com/v2/search',
+            params: {
+              fly_from:originCityCode,
+              fly_to:destinationCityCode,
+              date_from:fromTime,
+              date_to: toTime,
+              flight_type: "oneway",
+              sort:'price',
+              max_stopovers:0,
+              curr:'INR',
+            },
+            headers: {
+              'apikey': 'NZ1N-dUb46M2DP0wrST6VQXyOJ6ndMpm',
+            }})
+            .then(function (response) {
+                setFlightData(response.data.data)
+                console.log(response.data);
+            }).catch(function (error) {
+                console.error(error);
+            });
     }
 
     const handleChange = (event) => {
       setTrip(event.target.value);
     };
-
-    // function groupFlightData(flightData){
-    //     return flightData.reduce((acc,obj)=>{
-    //         const key = obj.route[0].airline;
-    //         if (!acc[key]) {
-    //             acc[key] = [];
-    //          }
-    //          acc[key].push(obj);
-    //          return acc;
-    //     })
-    // }
 
     const classes = useStyles();
     return (
@@ -130,10 +141,7 @@ function Flight() {
             <Paper className={classes.container} elevation={3}>
             <form action="" onSubmit={ async(event)=>{ 
                 event.preventDefault();
-                await getData();
-                // if (typeof flightData !== 'undefined' && flightData.length === 0) {
-                //     groupFlightData();
-                // }
+                getData();
                  }}>
             <SearchBox>
                 <CitySearch>

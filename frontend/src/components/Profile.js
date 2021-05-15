@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         padding: '5px 5px 5px 12px',
-        height:'42px',
+        height:'35px',
+        width:'75px',
         borderRadius: '21px',
         backgroundColor: 'white',
     },
