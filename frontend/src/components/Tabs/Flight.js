@@ -48,7 +48,9 @@ function Flight() {
     const [fromTime, setFromTime] = useState(`${d.getDate()}/${(d.getMonth()+1)> 9?(d.getMonth()):("0"+(d.getMonth()+1))}/${d.getFullYear()}`)
     const [toTime, setToTime] = useState('27/05/2021');
     const [selectedDate, handleDateChange] = useState(new Date());
-    const [selectedDate1, handleDateChange1] = useState(new Date());
+    var currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 1);
+    const [selectedDate1, handleDateChange1] = useState(currentDate);
     
     //flight Data
     const [flightData, setFlightData] = useState([]);
@@ -218,10 +220,12 @@ function Flight() {
             <FlightInfo>
             {console.log(flightData)}
             {flightData.map((data)=>{
+                var comapany = get_airline(data.route[0].airline);
                 return (
-                    <Card flightno = {data.route[0].airline} price={data.price} departure={data.local_departure} arrival={data.local_arrival} origin={origin} destination={destination}/>
+                    <Card flightno = {data.route[0].flight_no} price={data.price} departure={tConvert(data.local_departure)} arrival={tConvert(data.local_arrival)} origin={origin} destination={destination} flight_name={comapany[0]} logo={comapany[1]}/>
                 )
             })}
+            {console.log(flightData)}
             </FlightInfo>
         </FlightPage>
     )
@@ -234,6 +238,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 padding:10px;
+width: 100%;
 `
 const FlightInfo = styled.div `
 margin-top:10px;
@@ -271,3 +276,74 @@ const top100Films = [
     
   ];
 
+  function get_airline(airline_code){
+      var comapany_name = "";
+      var company_logo = "";
+    switch(airline_code){
+        case 'AI':
+            comapany_name = "Air India";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/AI.png";
+            break;
+        case 'UK':
+            comapany_name = "Vistara";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/UK.png";
+            break;
+        case 'IX':
+            comapany_name = "Express India";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/IX.png";
+            break;
+        case 'SG':
+            comapany_name = "Spice Jet";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/SG.png";
+            break;
+        case 'G8':
+            comapany_name = "Go Air";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/G8.png";
+            break;
+        case '6E':
+            comapany_name = "IndiGo";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/6E.png";
+            break;
+        case 'I5':
+            comapany_name = "AirAsia India";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/I5.png";
+            break;
+        case '9I':
+            comapany_name = "Alliance Air";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/9I.png";
+            break;
+        case '4H':
+            comapany_name = "Air Hertiage";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/4H.png";
+            break;
+        case 'S9':
+            comapany_name = "FlyBig";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/S9.png";
+            break;
+        case 'OG':
+            comapany_name = "Star Air";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/OG.png";
+            break;
+        case '2T':
+            comapany_name = "TruJet";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/2T.png";
+            break;
+        case 'ZO':
+            comapany_name = "Zoom Air";
+            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/ZO.png";
+            break;
+    }
+    return [comapany_name, company_logo];
+  }
+
+  function tConvert (time) {
+    // Check correct time format and split into components
+    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+  
+    if (time.length > 1) { // If time format correct
+      time = time.slice (1);  // Remove full string match value
+      time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join (''); // return adjusted time or original string
+  }
