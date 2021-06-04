@@ -222,7 +222,7 @@ function Flight() {
             {flightData.map((data)=>{
                 var comapany = get_airline(data.route[0].airline);
                 return (
-                    <Card flightno = {data.route[0].flight_no} price={data.price} departure={tConvert(data.local_departure)} arrival={tConvert(data.local_arrival)} origin={origin} destination={destination} flight_name={comapany[0]} logo={comapany[1]}/>
+                    <Card flightno = {data.route[0].flight_no} price={data.price} departure={tConvert(data.local_departure)} arrival={tConvert(data.local_arrival)} origin={origin} destination={destination} flight_name={comapany[0]} logo={comapany[1]} company_website={comapany[2]}/>
                 )
             })}
             {console.log(flightData)}
@@ -279,61 +279,77 @@ const top100Films = [
   function get_airline(airline_code){
       var comapany_name = "";
       var company_logo = "";
+      var   company_website="";
     switch(airline_code){
         case 'AI':
             comapany_name = "Air India";
-            company_logo = "https://www.gstatic.com/flights/airline_logos/70px/AI.png";
+            company_logo  = "https://www.gstatic.com/flights/airline_logos/70px/AI.png";
+            company_website="http://www.airindia.in/";
+            
             break;
         case 'UK':
             comapany_name = "Vistara";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/UK.png";
+            company_website="https://www.airvistara.com/in/en";
             break;
         case 'IX':
             comapany_name = "Express India";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/IX.png";
+            company_website="https://www.airindiaexpress.in/en";
             break;
         case 'SG':
             comapany_name = "Spice Jet";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/SG.png";
+            company_website="https://www.spicejet.com/";
             break;
         case 'G8':
             comapany_name = "Go Air";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/G8.png";
+            company_website="https://www.flygofirst.com/";
             break;
         case '6E':
             comapany_name = "IndiGo";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/6E.png";
+            company_website="https://www.goindigo.in/";
+            
             break;
         case 'I5':
             comapany_name = "AirAsia India";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/I5.png";
+            company_website="https://www.airasia.co.in/home";
             break;
         case '9I':
             comapany_name = "Alliance Air";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/9I.png";
+            company_website="http://www.airindia.in/alliance-air.htm";
             break;
         case '4H':
             comapany_name = "Air Hertiage";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/4H.png";
+            company_website="https://www.alternativeairlines.com/air-heritage";
             break;
         case 'S9':
             comapany_name = "FlyBig";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/S9.png";
+            company_website="https://flybig.in/book";
             break;
         case 'OG':
             comapany_name = "Star Air";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/OG.png";
+            company_website="https://starair.in/";
             break;
         case '2T':
             comapany_name = "TruJet";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/2T.png";
+            company_website="https://www.trujet.com/#/home";
             break;
         case 'ZO':
             comapany_name = "Zoom Air";
             company_logo = "https://www.gstatic.com/flights/airline_logos/70px/ZO.png";
+            company_website="https://zoomair.in/";
             break;
     }
-    return [comapany_name, company_logo];
+    return [comapany_name, company_logo, company_website];
   }
 
   function tConvert (time) {

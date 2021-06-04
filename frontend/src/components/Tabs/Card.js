@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleAccordion({flightno,price, arrival,departure,destination,origin, flight_name, logo}) {
+export default function SimpleAccordion({flightno,price, arrival,departure,destination,origin, flight_name, logo,company_website, tt}) {
   const classes = useStyles();
   function myFunction() {
     var str = departure;
@@ -25,6 +25,7 @@ export default function SimpleAccordion({flightno,price, arrival,departure,desti
     // document.getElementById("demo").innerHTML = res1[0];
     return res1[0]
   }
+  
   var d1 = new Date(departure)
 
   var d2 = new Date(arrival)
@@ -45,7 +46,7 @@ export default function SimpleAccordion({flightno,price, arrival,departure,desti
           id="panel1a-header"
         >
           <div className="flight_container">
-            <img className="logo" src={logo}></img>
+           <a className="logo" title={flight_name} href={company_website} target="_blank"> <img src={logo}></img></a>
             <div className="time_flight_container">
             <div className="flight_date">{myFunction()}</div>
               <div className="time">{time}</div>

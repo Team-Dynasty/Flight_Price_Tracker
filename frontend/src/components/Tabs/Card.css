@@ -20,19 +20,21 @@
 }
 
 .logo{
-    width: 4%;
+    width: 3%;
     height: 50%;
     /* float: right; */
-    margin-left: 1%;
+    margin-left: -0.5%;
+    margin-right: 4%;
     position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
+    top: 40%;
+    transform: translate(0, -60%);
+    
 }
 
 .time_flight_container{
     width: 30%;
     float: left;
-    margin-left: 8.5%;
+    margin-left: 10%;
 }
 
 .duration_destination_container{
