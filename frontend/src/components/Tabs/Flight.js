@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import airline from './airline';
@@ -10,6 +10,7 @@ import Fab from '@material-ui/core/Fab';
 import SearchIcon from '@material-ui/icons/Search';
 import Card from './Card';
 import axios from 'axios';
+import {Line} from 'react-chartjs-2';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -106,10 +107,10 @@ function Flight() {
         console.log(origin);
         getOriginCityCode(origin);
         getDestinationCityCode(destination);
-        await setFromTime(getDate(selectedDate));
-        await setToTime(getDate(selectedDate1));
+        setFromTime(getDate(selectedDate));
+        setToTime(getDate(selectedDate1));
 
-        axios.request({
+        await axios.request({
             method: 'GET',
             url: 'https://tequila-api.kiwi.com/v2/search',
             params: {
@@ -133,6 +134,61 @@ function Flight() {
             });
     }
 
+    const [chartData, setChartData] = useState({});
+    let flightprice=[4752, 4767, 4767, 4767, 4723, 4767, 4767, 4767, 4723, 4767, 2943, 2943, 4767, 4767, 4767, 4767, 4767, 4767, 4767, 4767, 4767, 4705, 4767, 4705, 4767, 4767, 4767, 4767, 2941, 2941, 4723,];
+
+    const [flightPrice,setFlightPrice] = useState([]);
+    let flightdate=["2021-06-15", "2021-07-04", "2021-07-04", "2021-07-04", "2021-07-05", "2021-07-05", "2021-07-05", "2021-07-06", "2021-07-06", "2021-07-07", "2021-07-07", "2021-07-07", "2021-07-08", "2021-07-08", "2021-07-08", "2021-07-09", "2021-07-09", "2021-07-10", "2021-07-10", "2021-07-13", "2021-07-13", "2021-07-19", "2021-07-19", "2021-07-25", "2021-07-25", "2021-07-27", "2021-07-27", "2021-07-28", "2021-07-28", "2021-07-28"];
+
+
+    const getChartData= async ()=>{
+        await axios.request({
+            method: 'GET',
+            url: 'https://tequila-api.kiwi.com/v2/search',
+            params: {
+              fly_from:originCityCode,
+              fly_to:destinationCityCode,
+              date_from:fromTime,
+              date_to: toTime,
+              flight_type: "oneway",
+              sort:'date',
+              max_stopovers:0,
+              curr:'INR',
+            },
+            headers: {
+              'apikey': 'NZ1N-dUb46M2DP0wrST6VQXyOJ6ndMpm',
+            }})
+            .then(function (response) {
+                for(const dataObj of response.data.data){
+                  flightprice.push(parseInt(dataObj.price))
+                };
+            }).catch(function (error) {
+                console.error(error);
+            });
+          setFlightPrice(flightprice.slice(0,3))
+          console.log(flightPrice)
+    }
+
+    const chart =()=>{
+        setChartData({
+                labels: flightdate,
+                datasets: [{
+                  borderColor: "rgba(109,212,0,0.5)",
+                  pointBorderColor: "#6DD400",
+                  pointBackgroundColor: "#80b6f4",
+                  pointHoverBackgroundColor: "#80b6f4",
+                  pointHoverBorderColor: "#80b6f4",
+                  pointBorderWidth: 10,
+                  pointHoverRadius: 10,
+                  pointHoverBorderWidth: 1,
+                  pointRadius: 2,
+                  fill: false,
+                  borderWidth: 2,
+                  data: flightprice,
+                }]
+              })
+      }
+
     const handleChange = (event) => {
       setTrip(event.target.value);
     };
@@ -144,6 +200,7 @@ function Flight() {
             <form action="" onSubmit={ async(event)=>{ 
                 event.preventDefault();
                 getData();
+                chart();
                  }}>
             <SearchBox>
                 <CitySearch>
@@ -217,6 +274,7 @@ function Flight() {
             </SearchBox>
             </form>
             </Paper>
+            
             <FlightInfo>
             {console.log(flightData)}
             {flightData.map((data)=>{
@@ -227,6 +285,11 @@ function Flight() {
             })}
             {console.log(flightData)}
             </FlightInfo>
+            <Paper style={{ paddingLeft:"10px", paddingRight:"10px",marginTop:"20px" }}>
+            <div style={{ width:"700px"}}>
+            <Line data={chartData} />
+            </div>
+            </Paper> 
         </FlightPage>
     )
 }

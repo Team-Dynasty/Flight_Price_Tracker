@@ -88,9 +88,10 @@ const TabPanel = styled.div `
 width:100%;
 height:calc(100vh - 131px);
 background-color:black;
-margin-top:20px;
+margin-top:70px;
 `
 const Span = styled.div `
+margin-top:-60px;
 
 `
 const BackgroundImage = styled.div `
@@ -98,9 +99,9 @@ background-image:url('/airplane.jpg');
 background-size:cover;
 display:flex;
 justify-content:center;
-width:90%;
+width:95%;
+margin-top:20px;
 height:600px;
-background-color: red;
 margin-left:auto;
 margin-right:auto;
 `
