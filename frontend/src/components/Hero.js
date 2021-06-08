@@ -84,6 +84,7 @@ export default function CustomizedTabs() {
   );
 }
 
+
 const TabPanel = styled.div `
 width:100%;
 height:calc(100vh + 100px);

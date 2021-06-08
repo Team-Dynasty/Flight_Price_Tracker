@@ -135,11 +135,30 @@ function Flight() {
     }
 
     const [chartData, setChartData] = useState({});
-    let flightprice=[4752, 4767, 4767, 4767, 4723, 4767, 4767, 4767, 4723, 4767, 2943, 2943, 4767, 4767, 4767, 4767, 4767, 4767, 4767, 4767, 4767, 4705, 4767, 4705, 4767, 4767, 4767, 4767, 2941, 2941, 4723,];
+    
+    const flightprice = (data) =>{
+        let list =[];
+        for( const dataObject of data){
+            console.log(dataObject.price)
+            list.push(dataObject.price)
+        }
+        return list
+    }
+    const flightdate = (data) =>{
+        let list1 =[];
+        for( const dataObject of data){
+            list1.push((dataObject.local_arrival).split('T')[0])
 
-    const [flightPrice,setFlightPrice] = useState([]);
-    let flightdate=["2021-06-15", "2021-07-04", "2021-07-04", "2021-07-04", "2021-07-05", "2021-07-05", "2021-07-05", "2021-07-06", "2021-07-06", "2021-07-07", "2021-07-07", "2021-07-07", "2021-07-08", "2021-07-08", "2021-07-08", "2021-07-09", "2021-07-09", "2021-07-10", "2021-07-10", "2021-07-13", "2021-07-13", "2021-07-19", "2021-07-19", "2021-07-25", "2021-07-25", "2021-07-27", "2021-07-27", "2021-07-28", "2021-07-28", "2021-07-28"];
+        }
+        return list1
+    }
 
+
+    function ascendingOrder(arr) {
+        return arr.sort(function(a, b) {
+          return a - b;
+        });
+      }
 
     const getChartData= async ()=>{
         await axios.request({
@@ -165,13 +184,11 @@ function Flight() {
             }).catch(function (error) {
                 console.error(error);
             });
-          setFlightPrice(flightprice.slice(0,3))
-          console.log(flightPrice)
     }
 
     const chart =()=>{
         setChartData({
-                labels: flightdate,
+                labels: flightdate(flightData),
                 datasets: [{
                   borderColor: "rgba(109,212,0,0.5)",
                   pointBorderColor: "#6DD400",
@@ -184,7 +201,7 @@ function Flight() {
                   pointRadius: 2,
                   fill: false,
                   borderWidth: 2,
-                  data: flightprice,
+                  data: flightprice(flightData),
                 }]
               })
       }
@@ -286,9 +303,11 @@ function Flight() {
             {console.log(flightData)}
             </FlightInfo>
             <Paper style={{ paddingLeft:"10px", paddingRight:"10px",marginTop:"20px" }}>
+            
             <div style={{ width:"700px"}}>
             <Line data={chartData} />
             </div>
+            
             </Paper> 
         </FlightPage>
     )
