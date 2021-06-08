@@ -44,13 +44,13 @@ function Header(handleLogin) {
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
                     <AppLogo variant="h6" className={classes.title}>
-                        FPT
+                        Flight Price Tracker
                     </AppLogo>
                     {/* <botton onClick={handleLogout}>Logout</botton> */}
                     <div>
                         <User  style={{display:"flex", alignItems:"center"}}>
                             <Typography variant="subtitle1" style={{marginRight:"10px"}}>
-                                Nikhil Tidke   {/* {user.name} */}
+                                Guest user   {/* {user.name} */}
                             </Typography>
 
                             <Profile/>    
