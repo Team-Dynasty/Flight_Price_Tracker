@@ -44,7 +44,7 @@ function Header(handleLogin) {
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
                     <AppLogo variant="h6" className={classes.title}>
-                        Byond
+                        FPT
                     </AppLogo>
                     {/* <botton onClick={handleLogout}>Logout</botton> */}
                     <Profile/>
