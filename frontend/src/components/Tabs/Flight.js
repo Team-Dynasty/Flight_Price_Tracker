@@ -62,7 +62,7 @@ function Flight() {
     
     
     const getOriginCityCode= async(city)=>{
-        axios.request({
+        await axios.request({
             method: 'GET',
             url: 'https://tequila-api.kiwi.com/locations/query',
             params: {
@@ -81,7 +81,7 @@ function Flight() {
     }
 
     const getDestinationCityCode= async(city)=>{
-        axios.request({
+        await axios.request({
             method: 'GET',
             url: 'https://tequila-api.kiwi.com/locations/query',
             params: {
