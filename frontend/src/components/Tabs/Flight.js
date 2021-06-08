@@ -144,6 +144,7 @@ function Flight() {
         }
         return list
     }
+
     const flightdate = (data) =>{
         let list1 =[];
         for( const dataObject of data){
@@ -158,7 +159,7 @@ function Flight() {
         return arr.sort(function(a, b) {
           return a - b;
         });
-      }
+    }
 
     const getChartData= async ()=>{
         await axios.request({
@@ -204,7 +205,7 @@ function Flight() {
                   data: flightprice(flightData),
                 }]
               })
-      }
+    }
 
     const handleChange = (event) => {
       setTrip(event.target.value);
@@ -266,7 +267,7 @@ function Flight() {
                         autoOk
                         variant="inline"
                         inputVariant="outlined"
-                        label="Departure Date"
+                        label="From Date"
                         format="dd/MM/yyyy"
                         value={selectedDate}
                         onChange={handleDateChange}
@@ -277,7 +278,7 @@ function Flight() {
                         autoOk
                         variant="inline"
                         inputVariant="outlined"
-                        label="Return Date"
+                        label="To Date"
                         format="dd/MM/yyyy"
                         value={selectedDate1}
                         onChange={handleDateChange1}
