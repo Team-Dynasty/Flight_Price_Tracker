@@ -47,7 +47,16 @@ function Header(handleLogin) {
                         FPT
                     </AppLogo>
                     {/* <botton onClick={handleLogout}>Logout</botton> */}
-                    <Profile/>
+                    <div>
+                        <User  style={{display:"flex", alignItems:"center"}}>
+                            <Typography variant="subtitle1" style={{marginRight:"10px"}}>
+                                Nikhil Tidke   {/* {user.name} */}
+                            </Typography>
+
+                            <Profile/>    
+                        </User>
+                        
+                    </div>
                 </Toolbar>
             </AppBar>
                         
@@ -57,6 +66,7 @@ function Header(handleLogin) {
 
 export default Header
 
+const User = styled.div ``
 
 
 const Container = styled.div `
