@@ -4,7 +4,6 @@ import {useEffect} from 'react'
 import styled from 'styled-components'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form,Button,Card} from 'react-bootstrap'
-import './loginstyle.css'
 import '../../App'
 
 

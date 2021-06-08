@@ -135,8 +135,8 @@ useEffect(() => {
         onChange={handleChange}
         centered
       >
-        <Tab label="Login" />
-        <Tab label="Signup" />
+        <Tabi label="Login" />
+        <Tabi label="Signup" />
       </TopTab>
       { value === 0 && 
       <Login 
@@ -178,12 +178,14 @@ margin:auto;
 
 `
 
+const Tabi = styled(Tab)`
+  width:50px;
+`
 
 const TopTab = styled(Tabs)`
-    flex-grow:2;
+    width:100%;
     color:black;
     display:flex;
-    width:auto;
     .MuiTab-root {
         text-transform:none;
     }
