@@ -105,8 +105,8 @@ function Flight() {
 
     const getData = async () => {
         console.log(origin);
-        getOriginCityCode(origin);
-        getDestinationCityCode(destination);
+        await getOriginCityCode(origin);
+        await getDestinationCityCode(destination);
         setFromTime(getDate(selectedDate));
         setToTime(getDate(selectedDate1));
 
