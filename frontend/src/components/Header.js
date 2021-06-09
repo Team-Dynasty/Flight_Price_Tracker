@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 import {useState} from 'react'
+import '../components/Sign/PopupHero';
 
 
 
@@ -50,7 +51,9 @@ function Header(handleLogin) {
                     <div>
                         <User  style={{display:"flex", alignItems:"center"}}>
                             <Typography variant="subtitle1" style={{marginRight:"10px"}}>
-                                Guest user   {/* {user.name} */}
+                            {/* Guest user */}
+                            {!window.useremail?"Guest user":window.useremail}
+                                {/* Guest user   {user.name} */}
                             </Typography>
 
                             <Profile/>    

@@ -42,6 +42,8 @@ async function handleLogin(){
   .signInWithEmailAndPassword(email,password)
   const currentUser = fire.auth().currentUser;
   console.log(currentUser.email);
+  window.useremail=currentUser.email
+  
   } catch(error){
     switch(error.code){
       case "auth/invalid-email":
@@ -64,9 +66,6 @@ async function handleSignup(){
     const currentUser = fire.auth().currentUser;
     console.log(currentUser.uid);
     const db = fire.firestore();
-    
-
-
     await db.collection("users")
       .doc(email)
       .set({

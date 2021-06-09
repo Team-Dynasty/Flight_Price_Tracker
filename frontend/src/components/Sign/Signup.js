@@ -75,7 +75,7 @@ function Signup(props) {
                         <Form.Control type="password" ref={passwordConfirmRef} required />
                     </Form.Group> */}
                     <Container>
-                    <Button className="w-40" onClick={handleSignup}>Login</Button>
+                    <Button className="w-40" onClick={handleSignup}>Signup</Button>
                     </Container>
                 </Form>
                 </Card.Body>

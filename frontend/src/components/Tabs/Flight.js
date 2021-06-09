@@ -11,6 +11,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import Card from './Card';
 import axios from 'axios';
 import {Line} from 'react-chartjs-2';
+import fire from '../../firebase'
+import '../Sign/PopupHero'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -211,6 +213,52 @@ function Flight() {
       setTrip(event.target.value);
     };
 
+    const setalert=async()=> {
+        try{
+            let uprice= flightData[0]["price"];
+            let ucity1= flightData[0]["cityCodeFrom"];
+            let ucity2= flightData[0]["cityCodeTo"];
+            let udate1= flightData[0]["local_arrival"];
+            let udate2= flightData[0]["local_departure"];
+            var uquerycount=0;
+            var qcity1="";
+            var qcity2="";
+            console.log(udate2,udate1)
+            
+            const db = fire.firestore();
+            console.log(window.useremail);
+            await db.collection("users").doc(window.useremail).get().then((snapshot) => {
+                    let items = snapshot.data();
+                    var qcount = (items['querycount']);
+                    console.log(qcount,qcity1,qcity2);
+                    uquerycount=qcount
+                    
+            });
+            console.log(uquerycount+1);
+            uquerycount+=1;
+
+            var query="query"+uquerycount
+            if ((ucity1 != qcity1) || (ucity2 != qcity2)){
+                await db.collection("users").doc(window.useremail).update({
+                    [query]:{
+                     price:uprice,
+                     city1: ucity1,
+                     city2: ucity2,
+                     date1:udate1,
+                     date2:udate2,},
+                    querycount:uquerycount,
+                   });
+            }else{
+                console.log("repeted"); 
+            }
+            
+        }catch{
+
+        }
+        
+        // console.log(flightData[0]["price"])
+    }
+
     const classes = useStyles();
     return (
         <FlightPage>
@@ -219,6 +267,7 @@ function Flight() {
                 event.preventDefault();
                 getData();
                 chart();
+                setalert();
                  }}>
             <SearchBox>
                 <CitySearch>
@@ -294,19 +343,19 @@ function Flight() {
             </Paper>
             
             <FlightInfo>
-            {console.log(flightData)}
+            {/* {console.log(flightData)} */}
             {flightData.map((data)=>{
                 var comapany = get_airline(data.route[0].airline);
                 return (
                     <Card flightno = {data.route[0].flight_no} price={data.price} departure={tConvert(data.local_departure)} arrival={tConvert(data.local_arrival)} origin={origin} destination={destination} flight_name={comapany[0]} logo={comapany[1]} company_website={comapany[2]}/>
                 )
             })}
-            {console.log(flightData)}
+            {/* {console.log(flightData)} */}
             </FlightInfo>
             <Paper style={{ paddingLeft:"10px", paddingRight:"10px",marginTop:"20px" }}>
             
             <div style={{ width:"700px"}}>
-            <Line data={chartData} />
+            <Line data={chartData} /> 
             </div>
             
             </Paper> 
